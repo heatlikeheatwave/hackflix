@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import './App.css';
+import Catalogue from './Catalogue';
+import SingleMovieInfo from './SingleMovieInfo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <header className="top-header">
+                        <h1>Hackflix</h1>
+                        <nav>
+                            <NavLink exact to="/" activeClassName="active">
+                                Catalogue
+                            </NavLink>
+                        </nav>
+                    </header>
+                    
+                    <Route exact path="/" component={Catalogue} />
+                    <Route exact path="/movie/:id" component={SingleMovieInfo} />
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
